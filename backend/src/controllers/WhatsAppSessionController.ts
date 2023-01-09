@@ -6,33 +6,39 @@ import UpdateWhatsAppService from "../services/WhatsappService/UpdateWhatsAppSer
 
 const store = async (req: Request, res: Response): Promise<Response> => {
   const { whatsappId } = req.params;
-  const whatsapp = await ShowWhatsAppService(whatsappId);
+  const { companyId } = req.user;
 
-  StartWhatsAppSession(whatsapp);
+  const whatsapp = await ShowWhatsAppService(whatsappId, companyId);
+  await StartWhatsAppSession(whatsapp, companyId);
 
   return res.status(200).json({ message: "Starting session." });
 };
 
 const update = async (req: Request, res: Response): Promise<Response> => {
   const { whatsappId } = req.params;
+  const { companyId } = req.user;
 
   const { whatsapp } = await UpdateWhatsAppService({
     whatsappId,
+    companyId,
     whatsappData: { session: "" }
   });
 
-  StartWhatsAppSession(whatsapp);
+  await StartWhatsAppSession(whatsapp, companyId);
 
   return res.status(200).json({ message: "Starting session." });
 };
 
 const remove = async (req: Request, res: Response): Promise<Response> => {
   const { whatsappId } = req.params;
-  const whatsapp = await ShowWhatsAppService(whatsappId);
+  const { companyId } = req.user;
+  const whatsapp = await ShowWhatsAppService(whatsappId, companyId);
 
-  const wbot = getWbot(whatsapp.id);
-
-  wbot.logout();
+  if (whatsapp.session) {
+    await whatsapp.update({ status: "DISCONNECTED", session: "" });
+    const wbot = getWbot(whatsapp.id);
+    await wbot.logout();
+  }
 
   return res.status(200).json({ message: "Session disconnected." });
 };

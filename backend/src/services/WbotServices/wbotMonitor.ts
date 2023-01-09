@@ -1,72 +1,35 @@
 import * as Sentry from "@sentry/node";
-import { Client } from "whatsapp-web.js";
 
+import { AnyWASocket, Contact } from "@adiwajshing/baileys";
 import { getIO } from "../../libs/socket";
 import Whatsapp from "../../models/Whatsapp";
 import { logger } from "../../utils/logger";
-import { StartWhatsAppSession } from "./StartWhatsAppSession";
+import { Store } from "../../libs/store";
+import createOrUpdateBaileysService from "../BaileysServices/CreateOrUpdateBaileysService";
 
-interface Session extends Client {
+type Session = AnyWASocket & {
   id?: number;
+  store?: Store;
+};
+
+interface IContact {
+  contacts: Contact[];
 }
 
 const wbotMonitor = async (
   wbot: Session,
-  whatsapp: Whatsapp
+  whatsapp: Whatsapp,
+  companyId: number
 ): Promise<void> => {
   const io = getIO();
   const sessionName = whatsapp.name;
 
   try {
-    wbot.on("change_state", async newState => {
-      logger.info(`Monitor session: ${sessionName}, ${newState}`);
-      try {
-        await whatsapp.update({ status: newState });
-      } catch (err) {
-        Sentry.captureException(err);
-        logger.error(err);
-      }
-
-      io.emit("whatsappSession", {
-        action: "update",
-        session: whatsapp
+    wbot.ev.on("contacts.upsert", async (contacts: Contact[]) => {
+      createOrUpdateBaileysService({
+        whatsappId: whatsapp.id,
+        contacts
       });
-    });
-
-    wbot.on("change_battery", async batteryInfo => {
-      const { battery, plugged } = batteryInfo;
-      logger.info(
-        `Battery session: ${sessionName} ${battery}% - Charging? ${plugged}`
-      );
-
-      try {
-        await whatsapp.update({ battery, plugged });
-      } catch (err) {
-        Sentry.captureException(err);
-        logger.error(err);
-      }
-
-      io.emit("whatsappSession", {
-        action: "update",
-        session: whatsapp
-      });
-    });
-
-    wbot.on("disconnected", async reason => {
-      logger.info(`Disconnected session: ${sessionName}, reason: ${reason}`);
-      try {
-        await whatsapp.update({ status: "OPENING", session: "" });
-      } catch (err) {
-        Sentry.captureException(err);
-        logger.error(err);
-      }
-
-      io.emit("whatsappSession", {
-        action: "update",
-        session: whatsapp
-      });
-
-      setTimeout(() => StartWhatsAppSession(whatsapp), 2000);
     });
   } catch (err) {
     Sentry.captureException(err);

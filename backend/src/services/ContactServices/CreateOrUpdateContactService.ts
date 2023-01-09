@@ -1,7 +1,8 @@
 import { getIO } from "../../libs/socket";
 import Contact from "../../models/Contact";
+import ContactCustomField from "../../models/ContactCustomField";
 
-interface ExtraInfo {
+interface ExtraInfo extends ContactCustomField {
   name: string;
   value: string;
 }
@@ -12,6 +13,7 @@ interface Request {
   isGroup: boolean;
   email?: string;
   profilePicUrl?: string;
+  companyId: number;
   extraInfo?: ExtraInfo[];
 }
 
@@ -21,6 +23,7 @@ const CreateOrUpdateContactService = async ({
   profilePicUrl,
   isGroup,
   email = "",
+  companyId,
   extraInfo = []
 }: Request): Promise<Contact> => {
   const number = isGroup ? rawNumber : rawNumber.replace(/[^0-9]/g, "");
@@ -28,12 +31,17 @@ const CreateOrUpdateContactService = async ({
   const io = getIO();
   let contact: Contact | null;
 
-  contact = await Contact.findOne({ where: { number } });
+  contact = await Contact.findOne({
+    where: {
+      number,
+      companyId
+    }
+  });
 
   if (contact) {
     contact.update({ profilePicUrl });
 
-    io.emit("contact", {
+    io.emit(`company-${companyId}-contact`, {
       action: "update",
       contact
     });
@@ -44,10 +52,11 @@ const CreateOrUpdateContactService = async ({
       profilePicUrl,
       email,
       isGroup,
-      extraInfo
+      extraInfo,
+      companyId
     });
 
-    io.emit("contact", {
+    io.emit(`company-${companyId}-contact`, {
       action: "create",
       contact
     });

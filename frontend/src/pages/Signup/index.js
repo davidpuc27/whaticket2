@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import qs from 'query-string'
 
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
@@ -6,27 +7,21 @@ import { Link as RouterLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Formik, Form, Field } from "formik";
 
-import {
-	Avatar,
-	Button,
-	CssBaseline,
-	TextField,
-	Grid,
-	Box,
-	Typography,
-	Container,
-	InputAdornment,
-	IconButton,
-	Link
-} from '@material-ui/core';
-
-import { LockOutlined, Visibility, VisibilityOff } from '@material-ui/icons';
-
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
 
 import { i18n } from "../../translate/i18n";
 
-import api from "../../services/api";
+import { openApi } from "../../services/api";
 import toastError from "../../errors/toastError";
 
 // const Copyright = () => {
@@ -74,14 +69,24 @@ const UserSchema = Yup.object().shape({
 const SignUp = () => {
 	const classes = useStyles();
 	const history = useHistory();
+	let companyId = null
 
-	const initialState = { name: "", email: "", password: "" };
-	const [showPassword, setShowPassword] = useState(false);
+	const params = qs.parse(window.location.search)
+	if (params.companyId !== undefined) {
+		companyId = params.companyId
+	}
+
+	const initialState = { name: "", email: "", password: "", token: "", companyId };
+
 	const [user] = useState(initialState);
 
 	const handleSignUp = async values => {
 		try {
-			await api.post("/auth/signup", values);
+			if (user.companyId === null) {
+				throw new Error('Empresa não identificada!')
+			}
+
+			await openApi.post("/auth/signup", values);
 			toast.success(i18n.t("signup.toasts.success"));
 			history.push("/login");
 		} catch (err) {
@@ -94,7 +99,7 @@ const SignUp = () => {
 			<CssBaseline />
 			<div className={classes.paper}>
 				<Avatar className={classes.avatar}>
-					<LockOutlined />
+					<LockOutlinedIcon />
 				</Avatar>
 				<Typography component="h1" variant="h5">
 					{i18n.t("signup.title")}
@@ -148,24 +153,23 @@ const SignUp = () => {
 										variant="outlined"
 										fullWidth
 										name="password"
-										id="password"
-										autoComplete="current-password"
 										error={touched.password && Boolean(errors.password)}
 										helperText={touched.password && errors.password}
 										label={i18n.t("signup.form.password")}
-										type={showPassword ? 'text' : 'password'}
-										InputProps={{
-											endAdornment: (
-												<InputAdornment position="end">
-													<IconButton
-														aria-label="toggle password visibility"
-														onClick={() => setShowPassword((e) => !e)}
-													>
-														{showPassword ? <VisibilityOff /> : <Visibility />}
-													</IconButton>
-												</InputAdornment>
-											)
-										}}
+										type="password"
+										id="password"
+										autoComplete="current-password"
+									/>
+								</Grid>
+								<Grid item xs={12}>
+									<Field
+										as={TextField}
+										variant="outlined"
+										fullWidth
+										id="token"
+										label={i18n.t("auth.token")}
+										name="token"
+										autoComplete="token"
 									/>
 								</Grid>
 							</Grid>
@@ -178,7 +182,7 @@ const SignUp = () => {
 							>
 								{i18n.t("signup.buttons.submit")}
 							</Button>
-							<Grid container justifyContent="flex-end">
+							<Grid container justify="flex-end">
 								<Grid item>
 									<Link
 										href="#"
