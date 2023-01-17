@@ -29,21 +29,10 @@ const messages = {
 					register: "¿No tienes cuenta? ¡Regístrate!",
 				},
 			},
-      companies: {
-        title: "Registrar Empresa",
-        form: {
-          name: "Nombre de la Empresa",
-          plan: "Plan",
-          token: "Token",
-          submit: "Registrar",
-          success: "Empresa Creada con exito!",
-        },
-      },
 			auth: {
 				toasts: {
 					success: "¡Inicio de sesión exitoso!",
 				},
-			   token: "Token",	   
 			},
 			dashboard: {
 				charts: {
@@ -201,40 +190,6 @@ const messages = {
 				},
 				success: "Usuario guardado satisfactoriamente.",
 			},
-     scheduleModal: {
-        title: {
-          add: "Nueva programación",
-          edit: "Editar programación",
-        },
-        form: {
-          body: "Mensaje",
-          contact: "Contacto",
-          sendAt: "Fecha de programacion",
-          sentAt: "Fecha de envío",
-        },
-        buttons: {
-          okAdd: "Agregar",
-          okEdit: "Guardar",
-          cancel: "Cancelar",
-        },
-        success: "Guardada con éxito.",
-      },
-      tagModal: {
-        title: {
-          add: "Nueva etiqueta",
-          edit: "Editar etiqueta",
-        },
-        form: {
-          name: "Nombre",
-          color: "Color",
-        },
-        buttons: {
-          okAdd: "Agregar",
-          okEdit: "Guardar",
-          cancel: "Cancelar",
-        },
-        success: "etiqueta guardada con éxito.",
-      },	   
 			chat: {
 				noTicketMessage: "Selecciona un ticket para empezar a chatear.",
 			},
@@ -268,9 +223,8 @@ const messages = {
 			transferTicketModal: {
 				title: "Transferir Ticket",
 				fieldLabel: "Escriba para buscar usuarios",
-				fieldQueueLabel: "transferir a la cola",
-				fieldQueuePlaceholder: "seleccionar una cola",				
 				noOptions: "No se encontraron usuarios con ese nombre",
+				buttons: {
 					ok: "Transferir",
 					cancel: "Cancelar",
 				},
@@ -304,12 +258,6 @@ const messages = {
 					administration: "Administración",
 					users: "Usuarios",
 					settings: "Configuración",
-          helps: "Ayuda",
-          messagesAPI: "API",
-          schedules: "Programaciones",
-          campaigns: "Campañas",
-          annoucements: "Boletines",
-          chats: "Chat Interno",						 
 				},
 				appBar: {
 					user: {
@@ -318,206 +266,11 @@ const messages = {
 					},
 				},
 			},
-      messagesAPI: {
-        title: "API",
-        textMessage: {
-          number: "Número",
-          body: "Mensaje",
-          token: "Token registrado",
-        },			
-        mediaMessage: {
-          number: "Número",
-          body: "Nombre del archivo",
-          media: "Archivo",
-          token: "Token Registrado",
-        },
-      },			
 			notifications: {
 				noTickets: "Sin notificaciones.",
 			},
-      quickMessages: {
-        title: "Respuestas Rápidas",
-        buttons: {
-          add: "Nueva respuesta",
-        },
-        dialog: {
-          shortcode: "Atajo",
-          message: "respuesta",
-        },
-      },
-      contactLists: {
-        title: "Listas de Contactos",
-        table: {
-          name: "Nombre",
-          contacts: "Contactos",
-          actions: "Comportamiento",
-        },
-        buttons: {
-          add: "Nueva Lista",
-        },
-        dialog: {
-          name: "Nombre",
-          company: "Empresa",
-          okEdit: "Editar",
-          okAdd: "Adicionar",
-          add: "Adicionar",
-          edit: "Editar",
-          cancel: "Cancelar",
-        },
-        confirmationModal: {
-          deleteTitle: "Excluir",
-          deleteMessage: "Esta acción no se puede revertir..",
-        },
-        toasts: {
-          deleted: "Registro eliminado",
-        },
-      },
-      contactListItems: {
-        title: "Contactos",
-        searchPlaceholder: "Buscar",
-        buttons: {
-          add: "Nuevo",
-          lists: "Listas",
-          import: "Importar",
-        },
-        dialog: {
-          name: "Nombre",
-          number: "Número",
-          whatsapp: "Whatsapp",
-          email: "E-mail",
-          okEdit: "Editar",
-          okAdd: "Agregar",
-          add: "Agregar",
-          edit: "Editar",
-          cancel: "Cancelar",
-        },
-        table: {
-          name: "nombre",
-          number: "Número",
-          whatsapp: "Whatsapp",
-          email: "E-mail",
-          actions: "Acciones",
-        },
-        confirmationModal: {
-          deleteTitle: "Excluir",
-          deleteMessage: "Esta acción no se puede revertir..",
-          importMessage: "¿Quieres importar contactos de planilla? ",
-          importTitlte: "Importar",
-        },
-        toasts: {
-          deleted: "registro eliminado",
-        },
-      },
-      campaigns: {
-        title: "Campañas",
-        searchPlaceholder: "Buscar",
-        buttons: {
-          add: "Nueva campaña",
-          contactLists: "Listas de Contactos",
-        },
-        table: {
-          name: "Nombre",
-          whatsapp: "Conexión",
-          contactList: "Lista de Contactos",
-          status: "Status",
-          scheduledAt: "Agendamento",
-          completedAt: "Terminado",
-          confirmation: "Confirmación",
-          actions: "Comportamiento",
-        },
-        dialog: {
-          new: "Nueva campaña",
-          update: "Editar campaña",
-          readonly: "Sólo vista",
-          form: {
-            name: "Nombre",
-            message1: "Mensaje 1",
-            message2: "Mensaje 2",
-            message3: "Mensaje 3",
-            message4: "Mensaje 4",
-            message5: "Mensaje 5",
-            confirmationMessage1: "Mensaje de Confirmación 1",
-            confirmationMessage2: "Mensaje de Confirmación 2",
-            confirmationMessage3: "Mensaje de Confirmación 3",
-            confirmationMessage4: "Mensaje de Confirmación 4",
-            confirmationMessage5: "Mensaje de Confirmación 5",
-            messagePlaceholder: "Contenido del mensaje",
-            whatsapp: "Conexión",
-            status: "Status",
-            scheduledAt: "Agendar",
-            confirmation: "Confirmación",
-            contactList: "Lista de Contacto",
-          },
-          buttons: {
-            add: "Adicionar",
-            edit: "Atualizar",
-            okadd: "Ok",
-            cancel: "Cancelar Disparos",
-            restart: "Reiniciar Disparos",
-            close: "Fechar",
-            attach: "Anexar Arquivo",
-          },
-        },
-        confirmationModal: {
-          deleteTitle: "Excluir",
-          deleteMessage: "Esta ação não pode ser revertida.",
-        },
-        toasts: {
-          success: "Operação realizada com sucesso",
-          cancel: "Campanha cancelada",
-          restart: "Campanha reiniciada",
-          deleted: "Registro excluído",
-        },
-      },
-      announcements: {
-        title: "Informativos",
-        searchPlaceholder: "Pesquisa",
-        buttons: {
-          add: "Novo Informativo",
-          contactLists: "Listas de Informativos",
-        },
-        table: {
-          priority: "Prioridade",
-          title: "Title",
-          text: "Texto",
-          mediaName: "Arquivo",
-          status: "Status",
-          actions: "Ações",
-        },
-        dialog: {
-          edit: "Edição de Informativo",
-          add: "Novo Informativo",
-          update: "Editar Informativo",
-          readonly: "Apenas Visualização",
-          form: {
-            priority: "Prioridade",
-            title: "Title",
-            text: "Texto",
-            mediaPath: "Arquivo",
-            status: "Status",
-          },
-          buttons: {
-            add: "Adicionar",
-            edit: "Atualizar",
-            okadd: "Ok",
-            cancel: "Cancelar",
-            close: "Fechar",
-            attach: "Anexar Arquivo",
-          },
-        },
-        confirmationModal: {
-          deleteTitle: "Excluir",
-          deleteMessage: "Esta ação não pode ser revertida.",
-        },
-        toasts: {
-          success: "Operação realizada com sucesso",
-          deleted: "Registro excluído",
-        },
-      },
-      campaignsConfig: {
-        title: "Configurações de Campanhas",
-      },					  
-				title: "líneas",
+			queues: {
+				title: "Linhas",
 				table: {
 					name: "Nombre",
 					color: "Color",
@@ -534,7 +287,7 @@ const messages = {
 				},
 			},
 			queueSelect: {
-				inputLabel: "líneas",
+				inputLabel: "Linhas",
 			},
 			users: {
 				title: "Usuarios",
@@ -554,50 +307,8 @@ const messages = {
 					deleteTitle: "Borrar",
 					deleteMessage:
 						"Toda la información del usuario se perderá. Los tickets abiertos de los usuarios se moverán a la cola.",
+				},
 			},
-     helps: {
-        title: "centro de ayuda",
-      },
-      schedules: {
-        title: "Horarios",
-        confirmationModal: {
-          deleteTitle: "¿Está seguro de que desea eliminar este programa??",
-          deleteMessage: "Esta acción no se puede revertir.",
-        },
-        table: {
-          contact: "Contacto",
-          body: "Mensaje",
-          sendAt: "Data de Agendamento",
-          sentAt: "Data de Envio",
-          status: "Status",
-          actions: "Ações",
-        },
-        buttons: {
-          add: "Novo Agendamento",
-        },
-        toasts: {
-          deleted: "Agendamento excluído com sucesso.",
-        },
-      },
-      tags: {
-        title: "Tags",
-        confirmationModal: {
-          deleteTitle: "Você tem certeza que quer excluir esta Tag?",
-          deleteMessage: "Esta ação não pode ser revertida.",
-        },
-        table: {
-          name: "Nome",
-          color: "Cor",
-          tickets: "Registros Tagdos",
-          actions: "Ações",
-        },
-        buttons: {
-          add: "Nova Tag",
-        },
-        toasts: {
-          deleted: "Tag excluído com sucesso.",
-        },
-      },	
 			settings: {
 				success: "Configuración guardada satisfactoriamente.",
 				title: "Configuración",
@@ -638,17 +349,12 @@ const messages = {
 			ticketOptionsMenu: {
 				delete: "Borrar",
 				transfer: "Transferir",
-        registerAppointment: "Notas de contacto",
-        appointmentsModal: {
-          title: "Notas de contacto",
-          textarea: "Observación",
-          placeholder: "Ingresa los datos que deseas registrar aquí",
-        },				
-     		confirmationModal: {
+				confirmationModal: {
 					title: "¿Borrar ticket #",
 					titleFrom: "del contacto ",
 					message:
 						"¡Atención! Todos los mensajes Todos los mensajes relacionados con el ticket se perderán.",
+				},
 				buttons: {
 					delete: "Borrar",
 					cancel: "Cancelar",
