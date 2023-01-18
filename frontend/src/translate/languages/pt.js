@@ -2,30 +2,30 @@ const messages = {
   pt: {
     translations: {
       signup: {
-        title: "Registro",
+        title: "Cadastre-se",
         toasts: {
-          success: "¡El usuario ha sido creado satisfactoriamente! ¡Ahora inicia sesión!",
-          fail: "Error creando el usuario. Verifica la data reportada.",
+          success: "Usuário criado com sucesso! Faça seu login!!!.",
+          fail: "Erro ao criar usuário. Verifique os dados informados.",
         },
         form: {
-          name: "Nombre",
+          name: "Nome",
           email: "Email",
-          password: "Contraseña",
+          password: "Senha",
         },
         buttons: {
-          submit: "Regístrate",
-          login: "¿Ya tienes una cuenta? ¡Inicia sesión!",
+          submit: "Cadastrar",
+          login: "Já tem uma conta? Entre!",
         },
       },
       login: {
-        title: "Inicio de Sesión",
+        title: "Login",
         form: {
           email: "Email",
-          password: "Contraseña",
+          password: "Senha",
         },
         buttons: {
-          submit: "Ingresa",
-          register: "¿No tienes cuenta? ¡Regístrate!",
+          submit: "Entrar",
+          register: "Não tem um conta? Cadastre-se!",
         },
       },
       companies: {
