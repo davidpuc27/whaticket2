@@ -128,7 +128,7 @@ export function ChatModal({
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">
-          Fechar
+          Cerrar
         </Button>
         <Button onClick={handleSave} color="primary" variant="contained">
           Salvar

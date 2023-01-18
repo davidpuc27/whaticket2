@@ -145,7 +145,7 @@ export function CompanyForm(props) {
     const data = { ...record };
     if (data.dueDate !== "" && data.dueDate !== null) {
       switch (data.recurrence) {
-        case "MENSAL":
+        case "MENSUAL":
           data.dueDate = moment(data.dueDate)
             .add(1, "month")
             .format("YYYY-MM-DD");
@@ -202,7 +202,7 @@ export function CompanyForm(props) {
               <Grid xs={12} sm={6} md={4} item>
                 <Field
                   as={TextField}
-                  label="Nome"
+                  label="Nombre"
                   name="name"
                   variant="outlined"
                   className={classes.fullWidth}
@@ -212,7 +212,7 @@ export function CompanyForm(props) {
               <Grid xs={12} sm={6} md={2} item>
                 <Field
                   as={TextField}
-                  label="E-mail"
+                  label="Correo electronico"
                   name="email"
                   variant="outlined"
                   className={classes.fullWidth}
@@ -223,7 +223,7 @@ export function CompanyForm(props) {
               <Grid xs={12} sm={6} md={2} item>
                 <Field
                   as={TextField}
-                  label="Telefone"
+                  label="Telefono"
                   name="phone"
                   variant="outlined"
                   className={classes.fullWidth}
@@ -236,7 +236,7 @@ export function CompanyForm(props) {
                   <Field
                     as={Select}
                     id="plan-selection"
-                    label="Plano"
+                    label="Plan"
                     labelId="plan-selection-label"
                     name="planId"
                     margin="dense"
@@ -272,7 +272,7 @@ export function CompanyForm(props) {
                   <Field
                     as={Select}
                     id="campaigns-selection"
-                    label="Campanhas"
+                    label="Campañas"
                     labelId="campaigns-selection-label"
                     name="campaignsEnabled"
                     margin="dense"
@@ -286,7 +286,7 @@ export function CompanyForm(props) {
                 <FormControl variant="outlined" fullWidth>
                   <Field
                     as={TextField}
-                    label="Data de Vencimento"
+                    label="Dato de Vencimiento"
                     type="date"
                     name="dueDate"
                     InputLabelProps={{
@@ -305,14 +305,14 @@ export function CompanyForm(props) {
                   </InputLabel>
                   <Field
                     as={Select}
-                    label="Recorrência"
+                    label="Recurrencia"
                     labelId="recorrencia-selection-label"
                     id="recurrence"
                     name="recurrence"
                     margin="dense"
                   >
-                    <MenuItem value="MENSAL">Mensal</MenuItem>
-                    <MenuItem value="BIMESTRAL">Bimestral</MenuItem>
+                    <MenuItem value="Mensual">Mensal</MenuItem>
+                    <MenuItem value="Bimestral">Bimestral</MenuItem>
                     <MenuItem value="TRIMESTRAL">Trimestral</MenuItem>
                     <MenuItem value="SEMESTRAL">Semestral</MenuItem>
                     <MenuItem value="ANUAL">Anual</MenuItem>
@@ -518,7 +518,7 @@ export default function CompaniesManager() {
       const companyList = await list();
       setRecords(companyList);
     } catch (e) {
-      toast.error("Não foi possível carregar a lista de registros");
+      toast.error("No se puede cargar la lista de registros");
     }
     setLoading(false);
   };
@@ -533,10 +533,10 @@ export default function CompaniesManager() {
       }
       await loadPlans();
       handleCancel();
-      toast.success("Operação realizada com sucesso!");
+      toast.success("Operación realizada con éxito!");
     } catch (e) {
       toast.error(
-        "Não foi possível realizar a operação. Verifique se já existe uma empresa com o mesmo nome ou se os campos foram preenchidos corretamente"
+        "No se puede realizar la operación. Compruebe si ya existe una empresa con el mismo nombre o si los campos se han completado correctamente"
       );
     }
     setLoading(false);
@@ -548,9 +548,9 @@ export default function CompaniesManager() {
       await remove(record.id);
       await loadPlans();
       handleCancel();
-      toast.success("Operação realizada com sucesso!");
+      toast.success("Operación realizada con éxito!");
     } catch (e) {
-      toast.error("Não foi possível realizar a operação");
+      toast.error("No se puede realizar la operación");
     }
     setLoading(false);
   };
@@ -615,7 +615,7 @@ export default function CompaniesManager() {
         </Grid>
       </Grid>
       <ConfirmationModal
-        title="Exclusão de Registro"
+        title="Exclusión de registro"
         open={showConfirmDialog}
         onClose={() => setShowConfirmDialog(false)}
         onConfirm={() => handleDelete()}

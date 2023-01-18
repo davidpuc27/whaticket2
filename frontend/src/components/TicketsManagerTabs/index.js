@@ -116,9 +116,9 @@ const TicketsManagerTabs = () => {
   const [selectedUsers, setSelectedUsers] = useState([]);
 
   useEffect(() => {
-    if (user.profile.toUpperCase() === "ADMIN") {
+    //if (user.profile.toUpperCase() === "ADMIN") {
       setShowAllTickets(true);
-    }
+    //}
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

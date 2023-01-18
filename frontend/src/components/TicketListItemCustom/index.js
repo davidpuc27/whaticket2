@@ -167,7 +167,7 @@ const TicketListItemCustom = ({ ticket }) => {
       return (
         <>
           {profile === "admin" && (
-            <Tooltip title="Espiar Conversa">
+            <Tooltip title="Espiar ticket">
               <VisibilityIcon
                 onClick={() => setOpenTicketMessageDialog(true)}
                 fontSize="small"
@@ -204,7 +204,7 @@ const TicketListItemCustom = ({ ticket }) => {
             </Tooltip>
           )}
           {profile === "admin" && (
-            <Tooltip title="Espiar Conversa">
+            <Tooltip title="Espiar ticket">
               <VisibilityIcon
                 onClick={() => setOpenTicketMessageDialog(true)}
                 fontSize="small"
