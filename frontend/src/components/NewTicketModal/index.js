@@ -77,7 +77,7 @@ const NewTicketModal = ({ modalOpen, onClose, initialContact }) => {
 	const handleSaveTicket = async contactId => {
 		if (!contactId) return;
 		if (selectedQueue === "" && user.profile !== 'admin') {
-			toast.error("Selecione una fila");
+			toast.error("Selecione uma fila");
 			return;
 		}
 		setLoading(true);

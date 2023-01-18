@@ -95,7 +95,7 @@ export function PlanManagerForm (props) {
                         <Grid xs={12} sm={6} md={3} item>
                             <Field
                                 as={TextField}
-                                label="Nombre"
+                                label="Nome"
                                 name="name"
                                 variant="outlined"
                                 className={classes.fullWidth}
@@ -105,7 +105,7 @@ export function PlanManagerForm (props) {
                         <Grid xs={12} sm={6} md={3} item>
                             <Field
                                 as={TextField}
-                                label="Usuarios"
+                                label="Usuários"
                                 name="users"
                                 variant="outlined"
                                 className={classes.fullWidth}
@@ -116,7 +116,7 @@ export function PlanManagerForm (props) {
                         <Grid xs={12} sm={6} md={3} item>
                             <Field
                                 as={TextField}
-                                label="Conexiones"
+                                label="Conexões"
                                 name="connections"
                                 variant="outlined"
                                 className={classes.fullWidth}

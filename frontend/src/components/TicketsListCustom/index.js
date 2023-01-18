@@ -192,7 +192,7 @@ const TicketsListCustom = (props) => {
     );
 
     if (profile === "user") {
-      dispatch({ type: "LOAD_TICKETS", payload: tickets/*filteredTickets comentario asi se ve todo*/ });
+      dispatch({ type: "LOAD_TICKETS", payload: filteredTickets });
     } else {
       dispatch({ type: "LOAD_TICKETS", payload: tickets });
     }
